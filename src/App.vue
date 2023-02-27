@@ -21,8 +21,18 @@
 			switchExerciseType(type) {
 				this.formExerciseType = type;
 			},
-			formSubmit() {
-				console.log('submitted');
+			formSubmit(event) {
+				const formElements = event.target.elements; // Modified from Sean Ray on StackOverflow: https://stackoverflow.com/questions/42694457/getting-form-data-on-submit
+				this.pastExercises.push({
+					date: formElements.date.value,
+					description: formElements.description.value,
+					time: formElements.time.value,
+					distance: formElements.distance.value,
+					sets: formElements.sets.value,
+					reps: formElements.reps.value,
+					weight: formElements.weight.value
+				});
+				console.log('pastExercises:', this.pastExercises);
 			}
 		}
 	};
