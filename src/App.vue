@@ -51,6 +51,7 @@
 <template>
 	<main>
 		<h1 class="title">Vue Exercise Tracking App</h1>
+		<h2 class="title is-4">Add Exercise</h2>
 		<form @submit.prevent="formSubmit">
 			<div class="field">
 				<label class="label">Date Completed</label>
@@ -111,6 +112,7 @@
 				</div>
 			</div>
 		</form>
+		<h2 class="title is-4">Past Exercises</h2>
 		<table class="table">
 			<thead>
 				<tr>
@@ -146,8 +148,8 @@
 	.exercise-type {
 		margin-bottom: 1rem;
 	}
-	table {
-		margin-top: 3rem;
+	h2 {
+		margin-top: 2rem;
 	}
 	.save-exercise {
 		margin-top: 0.5rem;
