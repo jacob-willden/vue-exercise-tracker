@@ -8,7 +8,10 @@
 		data() {
 			return {
 				pastExercises: [],
-				formExerciseType: 'aerobic'
+				formExerciseType: 'aerobic',
+				modalVisible: false,
+				oldDate: '',
+				index: 0
 			}
 		},
 		beforeMount() {
@@ -31,18 +34,33 @@
 					formElements.distance.value = '';
 				}
 			},
-			formSubmit(event) {
+			newExerciseSubmit(event) {
 				const formElements = event.target.elements; // Modified from Sean Ray on StackOverflow: https://stackoverflow.com/questions/42694457/getting-form-data-on-submit
 				this.pastExercises.push({
-					date: formElements.date.value,
 					description: formElements.description.value,
 					time: formElements.time.value,
 					distance: formElements.distance.value,
 					sets: formElements.sets.value,
 					reps: formElements.reps.value,
-					weight: formElements.weight.value
+					weight: formElements.weight.value,
+					//date: formElements.date.value
 				});
 				console.log('pastExercises:', this.pastExercises);
+			},
+			openDateModal(oldDate, index) {
+				if(oldDate) {
+					this.oldDate = oldDate;
+				}
+				else {
+					this.oldDate = '';
+				}
+				this.index = index;
+				this.modalVisible = true;
+			},
+			dateSubmit(event) {
+				const newDate = event.target.elements.date.value;
+				this.pastExercises[this.index].date = newDate;
+				this.modalVisible = false;
 			}
 		}
 	};
@@ -52,13 +70,13 @@
 	<main>
 		<h1 class="title">Vue Exercise Tracking App</h1>
 		<h2 class="title is-4">Add Exercise</h2>
-		<form @submit.prevent="formSubmit">
-			<div class="field">
+		<form @submit.prevent="newExerciseSubmit">
+			<!-- <div class="field">
 				<label class="label">Date Completed</label>
 				<div class="control">
 					<input class="input" type="text" name="date">
 				</div>
-			</div>
+			</div> -->
 			<div class="field">
 				<label class="label">Description</label>
 				<div class="control">
@@ -116,27 +134,54 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Date Completed</th>
 					<th>Description</th>
 					<th>Time (Minutes)</th>
 					<th>Distance (Meters)</th>
 					<th>Sets</th>
 					<th>Reps</th>
 					<th>Weight Amount (Kilograms)</th>
+					<th>Date Completed</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="pastExercise in pastExercises">
-					<td>{{ pastExercise.date }}</td>
+
+				<tr v-for="(pastExercise, index) in pastExercises">
 					<td>{{ pastExercise.description }}</td>
 					<td>{{ pastExercise.time }}</td>
 					<td>{{ pastExercise.distance }}</td>
 					<td>{{ pastExercise.sets }}</td>
 					<td>{{ pastExercise.reps }}</td>
 					<td>{{ pastExercise.weight }}</td>
+					<td>{{ pastExercise.date }}
+						<button @click="openDateModal(pastExercise.date, index)" :key="index" class="button">{{ pastExercise.date ? 'Edit' : 'Add' }}</button>
+					</td>
 				</tr>
 			</tbody>
 		</table>
+
+		<div class="modal" :class="{'is-active': modalVisible}">
+			<div class="modal-background"></div>
+
+			<div class="modal-content">
+				<div class="box">
+					<form @submit.prevent="dateSubmit">
+						<div class="field">
+							<label class="label">Date Completed</label>
+							<div class="control">
+								<input class="input" type="text" name="date" :value="oldDate">
+							</div>
+						</div> 
+						<div class="field">
+							<div class="control">
+								<button class="button is-link" type="submit">Save</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<button @click="modalVisible = false" class="modal-close is-large" aria-label="close"></button>
+		</div>
 	</main>
 </template>
 
