@@ -20,6 +20,16 @@
 			},
 			switchExerciseType(type) {
 				this.formExerciseType = type;
+				const formElements = document.querySelector('form').elements;
+				if(type === 'aerobic') {
+					formElements.sets.value = '';
+					formElements.reps.value = '';
+					formElements.weight.value = '';
+				}
+				else if(type === 'anaerobic') {
+					formElements.time.value = '';
+					formElements.distance.value = '';
+				}
 			},
 			formSubmit(event) {
 				const formElements = event.target.elements; // Modified from Sean Ray on StackOverflow: https://stackoverflow.com/questions/42694457/getting-form-data-on-submit
