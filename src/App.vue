@@ -8,6 +8,7 @@
 		data() {
 			return {
 				pastExercises: [],
+				formExerciseType: 'aerobic'
 			}
 		},
 		beforeMount() {
@@ -17,6 +18,12 @@
 			consoleLog(string) {
 				console.log(string);
 			},
+			switchExerciseType(type) {
+				this.formExerciseType = type;
+			},
+			formSubmit() {
+				console.log('submitted');
+			}
 		}
 	};
 </script>
@@ -24,6 +31,66 @@
 <template>
 	<main>
 		<h1 class="title">Vue Exercise Tracking App</h1>
+		<form @submit.prevent="formSubmit">
+			<div class="field">
+				<label class="label">Date Completed</label>
+				<div class="control">
+					<input class="input" type="text" name="date">
+				</div>
+			</div>
+			<div class="field">
+				<label class="label">Description</label>
+				<div class="control">
+					<textarea class="textarea" name="description"></textarea>
+				</div>
+			</div>
+			<div class="control exercise-type">
+				<p class="label">Exercise Type</p>
+				<label class="radio">
+					<input type="radio" @change="switchExerciseType('aerobic')" name="answer" checked>
+					Aerobic
+				</label>
+				<label class="radio">
+					<input type="radio" @change="switchExerciseType('anaerobic')" name="answer">
+					Anaerobic
+				</label>
+			</div>
+			<div class="field">
+				<label class="label">Time (Minutes)</label>
+				<div class="control">
+					<input class="input" type="number" name="time" :disabled="formExerciseType === 'anaerobic' ? true : false">
+				</div>
+			</div>
+			<div class="field">
+				<label class="label">Distance (Meters)</label>
+				<div class="control">
+					<input class="input" type="number" name="distance" :disabled="formExerciseType === 'anaerobic' ? true : false">
+				</div>
+			</div>
+			<div class="field">
+				<label class="label">Sets</label>
+				<div class="control">
+					<input class="input" type="number" name="sets" :disabled="formExerciseType === 'aerobic' ? true : false">
+				</div>
+			</div>
+			<div class="field">
+				<label class="label">Reps</label>
+				<div class="control">
+					<input class="input" type="number" name="reps" :disabled="formExerciseType === 'aerobic' ? true : false">
+				</div>
+			</div>
+			<div class="field">
+				<label class="label">Weight Amount (Kilograms)</label>
+				<div class="control">
+					<input class="input" type="number" name="weight" :disabled="formExerciseType === 'aerobic' ? true : false">
+				</div>
+			</div>
+			<div class="field">
+				<div class="control">
+					<button class="button is-link save-exercise" type="submit">Save Exercise</button>
+				</div>
+			</div>
+		</form>
 		<table class="table">
 			<thead>
 				<tr>
@@ -56,7 +123,13 @@
 		margin: 1rem 0;
 		min-width: 62vw;
 	}
+	.exercise-type {
+		margin-bottom: 1rem;
+	}
 	table {
 		margin-top: 3rem;
+	}
+	.save-exercise {
+		margin-top: 0.5rem;
 	}
 </style>
