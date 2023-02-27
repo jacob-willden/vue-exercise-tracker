@@ -145,7 +145,7 @@
 			</thead>
 			<tbody>
 
-				<tr v-for="(pastExercise, index) in pastExercises">
+				<tr v-for="(pastExercise, index) in pastExercises"> <!-- Pass index to v-for, from Terry on StackOverflow: https://stackoverflow.com/questions/55592307/vue-js-v-for-how-to-style-html-depending-on-list-index -->
 					<td>{{ pastExercise.description }}</td>
 					<td>{{ pastExercise.time }}</td>
 					<td>{{ pastExercise.distance }}</td>
