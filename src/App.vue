@@ -152,7 +152,7 @@
 					<td>{{ pastExercise.sets }}</td>
 					<td>{{ pastExercise.reps }}</td>
 					<td>{{ pastExercise.weight }}</td>
-					<td>{{ pastExercise.date }}
+					<td><p class="exercise-date">{{ pastExercise.date }}</p>
 						<button @click="openDateModal(pastExercise.date, index)" :key="index" class="button">{{ pastExercise.date ? 'Edit' : 'Add' }}</button>
 					</td>
 				</tr>
@@ -195,6 +195,9 @@
 	}
 	h2 {
 		margin-top: 2rem;
+	}
+	.exercise-date {
+		margin-bottom: 0.5rem;
 	}
 	.save-exercise {
 		margin-top: 0.5rem;
