@@ -1,4 +1,5 @@
-# vue-exercise-tracker
+# Vue Exercise Tracker
+[Live App on Vercel](https://vue-exercise-tracker-two.vercel.app/)
 
 ## Installation Instructions
 1. Install [NPM](https://nodejs.org/en/download), if you don't already have it installed
