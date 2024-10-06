@@ -9,13 +9,13 @@
 			return {
 				pastExercises: [],
 				formExerciseType: 'aerobic',
-				modalVisible: false,
 				oldDate: '',
-				index: 0
+				index: 0,
+				modalElement: null
 			}
 		},
-		beforeMount() {
-			//
+		mounted() {
+			this.modalElement = this.$refs.modal;
 		},
 		methods: {
 			consoleLog(string) {
@@ -55,12 +55,12 @@
 					this.oldDate = '';
 				}
 				this.index = index;
-				this.modalVisible = true;
+				this.modalElement.showModal();
 			},
 			dateSubmit(event) {
 				const newDate = event.target.elements.date.value;
 				this.pastExercises[this.index].date = newDate;
-				this.modalVisible = false;
+				this.modalElement.close();
 			}
 		}
 	};
@@ -159,29 +159,22 @@
 			</tbody>
 		</table>
 
-		<div class="modal" :class="{'is-active': modalVisible}">
-			<div class="modal-background"></div>
-
-			<div class="modal-content">
-				<div class="box">
-					<form @submit.prevent="dateSubmit">
-						<div class="field">
-							<label class="label">Date Completed</label>
-							<div class="control">
-								<input class="input" type="text" name="date" :value="oldDate">
-							</div>
-						</div> 
-						<div class="field">
-							<div class="control">
-								<button class="button is-link" type="submit">Save</button>
-							</div>
-						</div>
-					</form>
+		<dialog ref="modal">
+			<button @click="modalElement.close()" class="button">Close</button>
+			<form @submit.prevent="dateSubmit">
+				<div class="field">
+					<label class="label">Date Completed</label>
+					<div class="control">
+						<input class="input" type="text" name="date" :value="oldDate">
+					</div>
 				</div>
-			</div>
-
-			<button @click="modalVisible = false" class="modal-close is-large" aria-label="close"></button>
-		</div>
+				<div class="field">
+					<div class="control">
+						<button class="button is-link" type="submit">Save</button>
+					</div>
+				</div>
+			</form>
+		</dialog>
 	</main>
 </template>
 
