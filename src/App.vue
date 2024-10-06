@@ -71,63 +71,43 @@
 		<h1 class="title">Vue Exercise Tracking App</h1>
 		<h2 class="title is-4">Add Exercise</h2>
 		<form @submit.prevent="newExerciseSubmit">
-			<!-- <div class="field">
-				<label class="label">Date Completed</label>
-				<div class="control">
-					<input class="input" type="text" name="date">
-				</div>
-			</div> -->
 			<div class="field">
-				<label class="label">Description</label>
-				<div class="control">
-					<textarea class="textarea" name="description"></textarea>
-				</div>
+				<label for="description" class="label">Description</label>
+				<textarea id="description" class="textarea" name="description"></textarea>
 			</div>
-			<div class="control exercise-type">
-				<p class="label">Exercise Type</p>
-				<label class="radio">
-					<input type="radio" @change="switchExerciseType('aerobic')" name="answer" checked>
-					Aerobic
-				</label>
-				<label class="radio">
-					<input type="radio" @change="switchExerciseType('anaerobic')" name="answer">
-					Anaerobic
-				</label>
+			<fieldset>
+				<legend>Exercise Type</legend>
+				<div class="radio">
+					<input id="aerobic" type="radio" @change="switchExerciseType('aerobic')" name="answer" checked>
+					<label for="aerobic">Aerobic</label>
+				</div>
+				<div class="radio">
+					<input id="anaerobic" type="radio" @change="switchExerciseType('anaerobic')" name="answer">
+					<label for="anaerobic">Anaerobic</label>
+				</div>
+			</fieldset>
+			<div class="field">
+				<label for="time" class="label">Time (Minutes)</label>
+				<input id="time" class="input" type="number" name="time" :disabled="formExerciseType === 'anaerobic' ? true : false">
 			</div>
 			<div class="field">
-				<label class="label">Time (Minutes)</label>
-				<div class="control">
-					<input class="input" type="number" name="time" :disabled="formExerciseType === 'anaerobic' ? true : false">
-				</div>
+				<label for="distance" class="label">Distance (Meters)</label>
+				<input id="distance" class="input" type="number" name="distance" :disabled="formExerciseType === 'anaerobic' ? true : false">
 			</div>
 			<div class="field">
-				<label class="label">Distance (Meters)</label>
-				<div class="control">
-					<input class="input" type="number" name="distance" :disabled="formExerciseType === 'anaerobic' ? true : false">
-				</div>
+				<label for="sets" class="label">Sets</label>
+				<input id="sets" class="input" type="number" name="sets" :disabled="formExerciseType === 'aerobic' ? true : false">
 			</div>
 			<div class="field">
-				<label class="label">Sets</label>
-				<div class="control">
-					<input class="input" type="number" name="sets" :disabled="formExerciseType === 'aerobic' ? true : false">
-				</div>
+				<label for="reps" class="label">Reps</label>
+				<input id="reps" class="input" type="number" name="reps" :disabled="formExerciseType === 'aerobic' ? true : false">
 			</div>
 			<div class="field">
-				<label class="label">Reps</label>
-				<div class="control">
-					<input class="input" type="number" name="reps" :disabled="formExerciseType === 'aerobic' ? true : false">
-				</div>
+				<label for="weight" class="label">Weight Amount (Kilograms)</label>
+				<input id="weight" class="input" type="number" name="weight" :disabled="formExerciseType === 'aerobic' ? true : false">
 			</div>
 			<div class="field">
-				<label class="label">Weight Amount (Kilograms)</label>
-				<div class="control">
-					<input class="input" type="number" name="weight" :disabled="formExerciseType === 'aerobic' ? true : false">
-				</div>
-			</div>
-			<div class="field">
-				<div class="control">
-					<button class="button is-link save-exercise" type="submit">Save Exercise</button>
-				</div>
+				<button class="button is-link save-exercise" type="submit">Save Exercise</button>
 			</div>
 		</form>
 		<h2 class="title is-4">Past Exercises</h2>
@@ -165,15 +145,11 @@
 			</button>
 			<form @submit.prevent="dateSubmit">
 				<div class="field">
-					<label class="label">Date Completed</label>
-					<div class="control">
-						<input class="input" type="text" name="date" :value="oldDate">
-					</div>
+					<label for="date" class="label">Date Completed</label>
+					<input id="date" class="input" type="text" name="date" :value="oldDate">
 				</div>
 				<div class="field">
-					<div class="control">
-						<button class="button is-link" type="submit">Save</button>
-					</div>
+					<button class="button is-link" type="submit">Save</button>
 				</div>
 			</form>
 		</dialog>

@@ -18,6 +18,11 @@ a:hover {
 	color: #052029;
 }
 
+label:not(.radio) {
+	margin-bottom: 0;
+	padding-bottom: 0.5rem;
+}
+
 select:not(:disabled), .button {
 	border-color: #808080;
 }
@@ -45,8 +50,12 @@ input[type="checkbox"], input[type="radio"] {
 	margin-bottom: 0.225em;
 }
 
-label.radio {
-	margin-bottom: 1.2em;
+.radio {
+	margin-bottom: 1.6rem;
+}
+
+.radio label {
+	display: inline;
 }
 
 .close-button {
