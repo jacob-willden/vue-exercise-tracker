@@ -160,7 +160,9 @@
 		</table>
 
 		<dialog ref="modal">
-			<button @click="modalElement.close()" class="button">Close</button>
+			<button @click="modalElement.close()" class="close-button">
+				<img src="./assets/close.svg" alt="Close"/>
+			</button>
 			<form @submit.prevent="dateSubmit">
 				<div class="field">
 					<label class="label">Date Completed</label>
