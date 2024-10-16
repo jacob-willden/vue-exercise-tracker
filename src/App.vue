@@ -126,7 +126,7 @@
 			</thead>
 			<tbody>
 
-				<tr v-for="(pastExercise, index) in pastExercises"> <!-- Pass index to v-for, from Terry on StackOverflow: https://stackoverflow.com/questions/55592307/vue-js-v-for-how-to-style-html-depending-on-list-index -->
+				<tr v-for="(pastExercise, index) in pastExercises"> <!-- Pass index to v-for, from the official Vue guide: https://vuejs.org/guide/essentials/list -->
 					<td>{{ pastExercise.description }}</td>
 					<td>{{ pastExercise.time }}</td>
 					<td>{{ pastExercise.distance }}</td>
