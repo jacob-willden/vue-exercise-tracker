@@ -35,7 +35,8 @@
 				}
 			},
 			newExerciseSubmit(event) {
-				const formElements = event.target.elements; // Modified from Sean Ray on StackOverflow: https://stackoverflow.com/questions/42694457/getting-form-data-on-submit
+				// Get elements by name, via Mozilla Developer Network: https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/elements
+				const formElements = event.target.elements;
 				this.pastExercises.push({
 					description: formElements.description.value,
 					time: formElements.time.value,
