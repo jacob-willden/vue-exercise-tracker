@@ -2,7 +2,6 @@
   "name": "vue-exercise-tracker",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
   "license": "UPL-1.0",
   "type": "module",
   "scripts": {
